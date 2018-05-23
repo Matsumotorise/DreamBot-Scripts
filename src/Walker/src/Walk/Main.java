@@ -18,6 +18,7 @@ public class Main extends AbstractScript {
 	private boolean isRun;
 	private Area destinationA = null;
 	private Tile destinationT = null;
+	private int reactionDistance;
 
 
 	@Override
@@ -113,8 +114,11 @@ public class Main extends AbstractScript {
 
 	private void move() {
 		getWalking().walk(destinationT);
-		sleepUntil(() -> !getLocalPlayer().isMoving(),
-				(isRun ? (Calculations.random(1800, 1900)) : (Calculations.random(3600, 3800))));
+		reactionDistance = Calculations.random(4);
+		sleepUntil(() -> {
+			sleep(100, 200);
+			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() > reactionDistance;
+		}, (isRun ? (Calculations.random(1800, 1900)) : (Calculations.random(3600, 3800))));
 	}
 
 	@Override
