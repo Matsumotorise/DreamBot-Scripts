@@ -17,10 +17,10 @@ import org.dreambot.api.wrappers.widgets.WidgetChild;
 public class Main extends AbstractScript {
 
 	private final int FURNACE_ID = 24009, GOLD_BAR_ID = 2357;
-	private Product jewlery;
+	private Product jewelery;
 
 	private State s;
-	private Area bankArea;
+	private Area bankArea, smeltArea;
 	private Tile smeltTile;
 	private WidgetChild wig;
 
@@ -37,22 +37,26 @@ public class Main extends AbstractScript {
 
 	private void init() { //1st state
 		bankArea = getBankArea();
+		smeltArea = getSmeltArea();
 		smeltTile = getSmeltTile();
-		jewlery = getJewlery();
+		jewelery = getJewelery();
 	}
 
 	private Tile getSmeltTile() {
-		Tile tmp = null;
-		switch (s.getSmeltLocation()) {
-			case 0:
-				tmp = (new Tile(3276, 3186, 0));
-			case 1:
-				tmp = (new Tile(2973, 3370, 0));
-		}
-		return tmp.getArea(2).getRandomTile();
+		return smeltArea.getRandomTile();
 	}
 
-	private Product getJewlery() {
+	private Area getSmeltArea() {
+		switch (s.getSmeltLocation()) {
+			case 0:
+				return new Tile(3276, 3186, 0).getArea(2);
+			case 1:
+				return new Tile(2973, 3370, 0).getArea(2);
+		}
+		return null;
+	}
+
+	private Product getJewelery() {
 		switch (s.getProduct()) {
 			case 0:
 				return Product.AMULET;
@@ -82,7 +86,7 @@ public class Main extends AbstractScript {
 			getInventory().deselect();
 			log("Deselected");
 		} else {
-			wig = getWidgets().getWidgetChild(446, jewlery.getChildID());
+			wig = getWidgets().getWidgetChild(446, jewelery.getChildID());
 			log("Widget made");
 			if (wig != null && wig.isVisible()) {
 				log("Widget Visible");
@@ -126,12 +130,12 @@ public class Main extends AbstractScript {
 
 	private int bank() {  //4th state
 		if (getBank().isOpen()) {
-			getBank().depositAllExcept(jewlery.getMouldID());
+			getBank().depositAllExcept(jewelery.getMouldID());
 			sleep(100, 200);
 			getBank().withdrawAll(GOLD_BAR_ID);
 			sleep(100, 200);
-			if (!getInventory().contains(jewlery.getMouldID())) {
-				getBank().withdraw(jewlery.getMouldID());
+			if (!getInventory().contains(jewelery.getMouldID())) {
+				getBank().withdraw(jewelery.getMouldID());
 			}
 		} else {
 			getBank().openClosest();
