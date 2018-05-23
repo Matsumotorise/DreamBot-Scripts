@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/src/Combat/Combat.iml" filepath="$PROJECT_DIR$/src/Combat/Combat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DreamBot-Scripts.iml" filepath="$PROJECT_DIR$/DreamBot-Scripts.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/GoldCrafter/GoldCrafter.iml" filepath="$PROJECT_DIR$/src/GoldCrafter/GoldCrafter.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/Miner/Miner.iml" filepath="$PROJECT_DIR$/src/Miner/Miner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ScriptTemplate.iml" filepath="$PROJECT_DIR$/ScriptTemplate.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/Template/Template.iml" filepath="$PROJECT_DIR$/src/Template/Template.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/WC/WC.iml" filepath="$PROJECT_DIR$/src/WC/WC.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/Walker/Walker.iml" filepath="$PROJECT_DIR$/src/Walker/Walker.iml" />
