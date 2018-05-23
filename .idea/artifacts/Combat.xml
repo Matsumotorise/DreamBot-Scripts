@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Combat">
+    <output-path>$USER_HOME$/DreamBot/Scripts</output-path>
+    <root id="archive" name="Combat.jar">
+      <element id="module-output" name="Combat" />
+    </root>
+  </artifact>
+</component>

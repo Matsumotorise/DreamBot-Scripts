@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Walker .01">
+    <output-path>$USER_HOME$/DreamBot/Scripts</output-path>
+    <root id="archive" name="Walker .01.jar">
+      <element id="module-output" name="Walker" />
+    </root>
+  </artifact>
+</component>
