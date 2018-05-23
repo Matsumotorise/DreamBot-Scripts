@@ -87,7 +87,6 @@ public class Main extends AbstractScript {
 		}, 2500);
 	}
 
-	//TODO fix this
 	private void smelt() {
 		if (getInventory().isItemSelected()) {
 			getInventory().deselect();
