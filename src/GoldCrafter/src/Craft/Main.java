@@ -69,7 +69,7 @@ public class Main extends AbstractScript {
 	}
 
 	private Area getBankArea() {
-		return BankLocation.getNearest(getLocalPlayer()).getArea(3);
+		return BankLocation.getNearest(getLocalPlayer()).getArea(4);
 	}
 
 	private void moveToSmelt() {
@@ -99,7 +99,7 @@ public class Main extends AbstractScript {
 							sleep(1000);
 							return !getInventory().contains(GOLD_BAR_ID) || startLvl != getSkills().getRealLevel(Skill.CRAFTING);
 						}), 120000);
-						log("done");
+						log("Done");
 					}
 				}
 			} else {
