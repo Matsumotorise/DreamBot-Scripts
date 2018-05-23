@@ -16,6 +16,8 @@ public class Window extends JFrame {
 
 	private JButton startButton;
 	private JTabbedPane Bank;
+	private JComboBox product;
+	private JComboBox comboBox1;
 	private State s;
 
 	public Window() {
@@ -24,8 +26,8 @@ public class Window extends JFrame {
 	public Window(State s) {
 		this.s = s;
 		startButton.addActionListener(actionEvent -> {
-			s.setBankLocation(bankLocation.getSelectedIndex());
 			s.setSmeltLocation(location.getSelectedIndex());
+			s.setProduct(product.getSelectedIndex());
 			s.killFrame();
 		});
 	}

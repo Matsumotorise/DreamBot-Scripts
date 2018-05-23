@@ -10,7 +10,7 @@ public class State {
 
 	private JFrame frame;
 	private Window window;
-	private int state = 0, bankLocation, smeltLocation;
+	private int state = 0, smeltLocation, product;
 
 	public State() {
 		SwingUtilities.invokeLater(() -> {
@@ -24,14 +24,6 @@ public class State {
 			frame.pack();
 			frame.setVisible(true);
 		});
-	}
-
-	public int getBankLocation() {
-		return bankLocation;
-	}
-
-	public void setBankLocation(int bankLocation) {
-		this.bankLocation = bankLocation;
 	}
 
 	public void killFrame() {
@@ -62,4 +54,11 @@ public class State {
 	}
 
 
+	public int getProduct() {
+		return product;
+	}
+
+	public void setProduct(int p) {
+		product = p;
+	}
 }

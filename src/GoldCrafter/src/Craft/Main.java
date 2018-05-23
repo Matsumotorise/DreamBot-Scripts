@@ -17,6 +17,7 @@ import org.dreambot.api.wrappers.widgets.WidgetChild;
 public class Main extends AbstractScript {
 
 	private final int FURNACE_ID = 24009, GOLD_BAR_ID = 2357;
+	private Product jewlery;
 
 	private State s;
 	private Area bankArea;
@@ -37,52 +38,41 @@ public class Main extends AbstractScript {
 	private void init() { //1st state
 		bankArea = getBankArea();
 		smeltTile = getSmeltTile();
+		jewlery = getJewlery();
 	}
 
 	private Tile getSmeltTile() {
+		Tile tmp = null;
 		switch (s.getSmeltLocation()) {
 			case 0:
-				return new Tile(3274, 3186, 0);
+				tmp = (new Tile(3276, 3186, 0));
 			case 1:
-				break;
+				tmp = (new Tile(2973, 3370, 0));
+		}
+		return tmp.getArea(2).getRandomTile();
+	}
+
+	private Product getJewlery() {
+		switch (s.getProduct()) {
+			case 0:
+				return Product.AMULET;
+			case 1:
+				return Product.NECKLACE;
+			case 2:
+				return Product.RING;
 		}
 		return null;
 	}
 
 	private Area getBankArea() {
-		BankLocation tmp = BankLocation.getNearest(getLocalPlayer());
-		switch (s.getBankLocation()) {
-			case 0:
-				break;
-			case 1:
-				tmp = BankLocation.DRAYNOR;
-				break;
-			case 2:
-				tmp = BankLocation.FALADOR_EAST;
-				break;
-			case 3:
-				tmp = BankLocation.FALADOR_WEST;
-				break;
-			case 4:
-				tmp = BankLocation.GRAND_EXCHANGE;
-				break;
-			case 5:
-				tmp = BankLocation.LUMBRIDGE;
-				break;
-			case 6:
-				tmp = BankLocation.VARROCK_EAST;
-				break;
-			case 7:
-				tmp = BankLocation.VARROCK_WEST;
-				break;
-		}
-		return tmp.getArea(3);
+		return BankLocation.getNearest(getLocalPlayer()).getArea(3);
 	}
 
 	private void moveToSmelt() {
+		smeltTile = getSmeltTile();
 		getWalking().walk(smeltTile);
 		sleepUntil(() -> {
-			sleep(100);
+			sleep(200);
 			return !getLocalPlayer().isMoving();
 		}, 2500);
 	}
@@ -90,24 +80,38 @@ public class Main extends AbstractScript {
 	private void smelt() {
 		if (getInventory().isItemSelected()) {
 			getInventory().deselect();
+			log("Deselected");
 		} else {
-			wig = getWidgets().getWidgetChild(548, 17);
+			wig = getWidgets().getWidgetChild(446, jewlery.getChildID());
+			log("Widget made");
 			if (wig != null && wig.isVisible()) {
+				log("Widget Visible");
 				if (wig.interact("Make-All")) {
+					log("Making all");
 					if (sleepUntil(() -> getLocalPlayer().isAnimating(), 5000)) {
+						log("Player animating");
 						int startLvl = getSkills().getRealLevel(Skill.CRAFTING);
 						sleepUntil((() -> {
 							sleep(1000);
 							return !getInventory().contains(GOLD_BAR_ID) || startLvl != getSkills().getRealLevel(Skill.CRAFTING);
 						}), 120000);
+						log("done");
 					}
 				}
 			} else {
-				if (!getTabs().isOpen(Tab.INVENTORY)) {
-					getTabs().open(Tab.INVENTORY);
-					sleep(Calculations.random(400, 500));
+				if (Math.random() > .5) {
+					getGameObjects().closest(FURNACE_ID).interact("Smelt");
+					log("Interacting by smelt");
+				} else {
+					if (!getTabs().isOpen(Tab.INVENTORY)) {
+						getTabs().open(Tab.INVENTORY);
+						sleep(Calculations.random(400, 500));
+						log("Switching to inv");
+					}
+					getInventory().get(GOLD_BAR_ID).useOn(getGameObjects().closest(FURNACE_ID));
+					log("Using gold bar on furnace");
+					sleep(100);
 				}
-				getGameObjects().closest(FURNACE_ID).interact("Smelt");
 			}
 		}
 	}
@@ -122,10 +126,13 @@ public class Main extends AbstractScript {
 
 	private int bank() {  //4th state
 		if (getBank().isOpen()) {
-			getBank().depositAllExcept("Amulet mould");
+			getBank().depositAllExcept(jewlery.getMouldID());
 			sleep(100, 200);
 			getBank().withdrawAll(GOLD_BAR_ID);
 			sleep(100, 200);
+			if (!getInventory().contains(jewlery.getMouldID())) {
+				getBank().withdraw(jewlery.getMouldID());
+			}
 		} else {
 			getBank().openClosest();
 			sleepUntil(() -> getBank().isOpen(), 1500);
@@ -135,7 +142,7 @@ public class Main extends AbstractScript {
 
 	private void checkState() {
 		if (getInventory().contains(GOLD_BAR_ID)) {
-			if (smeltTile.distance() > 4) {
+			if (smeltTile.distance() > 6) {
 				s.setState(3);
 			} else {
 				s.setState(2);
@@ -147,6 +154,7 @@ public class Main extends AbstractScript {
 				s.setState(5);
 			}
 		}
+
 		/*
 		3 - move to smelt
 		2 - smelt
