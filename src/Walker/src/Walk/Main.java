@@ -112,6 +112,7 @@ public class Main extends AbstractScript {
 	}
 
 	private void move() {
+		generateDestination();
 		getWalking().walk(destinationT);
 		reactionDistance = Calculations.random(4);
 		sleepUntil(() -> {
