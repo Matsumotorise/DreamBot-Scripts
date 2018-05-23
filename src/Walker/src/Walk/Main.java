@@ -15,7 +15,6 @@ import org.dreambot.api.script.ScriptManifest;
 public class Main extends AbstractScript {
 
 	private State s;
-	private boolean isRun;
 	private Area destinationA = null;
 	private Tile destinationT = null;
 	private int reactionDistance;
@@ -129,7 +128,6 @@ public class Main extends AbstractScript {
 
 	@Override
 	public int onLoop() {
-		isRun = getWalking().isRunEnabled();
 		checkState();
 		switch (s.getState()) {
 			case 2:
