@@ -126,7 +126,7 @@ public class Main extends AbstractScript {
 
 	private void moveToBank() {  //////////////3rd state////////////////
 		getWalking().walk(bankArea.getRandomTile());
-		sleepUntil(() -> !getLocalPlayer().isMoving(), 500);
+		sleepUntil(() -> !getLocalPlayer().isMoving(), 1500);
 		sleepUntil(() -> {
 			sleep(250, 350);
 			return bankArea.contains(getLocalPlayer());
