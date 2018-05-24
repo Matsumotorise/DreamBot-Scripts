@@ -128,12 +128,20 @@ public class Main extends AbstractScript {
 		}
 		if (getLocalPlayer().getHealthPercent() < s.getEatPercentage()) { //Eat if Low
 			getInventory().interact(s.getFood(), "Eat");
+			sleep(100, 300);
 		}
 		if (!getLocalPlayer().isInCombat()) {
 			target.interact("Attack");
-			sleepUntil(() -> !getLocalPlayer().isInCombat(), 1500);
+			sleepUntil(() -> {
+				sleep(100);
+				return getLocalPlayer().isInCombat();
+			}, 2000);
+			sleepUntil(() -> {
+				sleep(100);
+				return !getLocalPlayer().isInCombat();
+			}, 10000);
 		}
-		return (int) (Math.random() * 201) + 1200;
+		return (int) (Math.random() * 201);
 	}
 
 	/////////////////////5th State/////////////////////////
@@ -186,6 +194,6 @@ public class Main extends AbstractScript {
 		}
 
 		//DEFAULT:
-		return ((int) (Math.random() * 200)) + 493;
+		return ((int) (Math.random() * 200));
 	}
 }
