@@ -137,10 +137,10 @@ public class Main extends AbstractScript {
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
 		sleepUntil(() -> !getLocalPlayer().isMoving(), 1000);
 		sleepUntil(() -> {
-			sleep(250, 350);
+			sleep(100, 200);
 			return bankArea.contains(getLocalPlayer());
 		}, 2500);
-		sleep(350, 750);
+		sleep(350, 450);
 	}
 
 	private int bank() {  //4th state
@@ -149,10 +149,10 @@ public class Main extends AbstractScript {
 			sleep(200, 300);
 			if (!getInventory().contains(jewelery.getMouldID())) {
 				getBank().withdraw(jewelery.getMouldID());
-				sleep(200, 300);
+				sleep(500, 600);
 			}
 			getBank().withdrawAll(GOLD_BAR_ID);
-			sleep(300, 400);
+			sleep(500, 600);
 		} else {
 			getBank().openClosest();
 			sleepUntil(() -> getBank().isOpen(), 1500);
