@@ -151,7 +151,7 @@ public class Main extends AbstractScript {
 
 	/////6th STATE/////////////////////
 	private void walkBack() {
-		getWalking().walk(kArea.getCenter().getArea(1).getRandomTile());
+		getWalking().walk(kArea.getCenter().getArea(3).getRandomTile());
 	}
 
 	private void antiBan() {
