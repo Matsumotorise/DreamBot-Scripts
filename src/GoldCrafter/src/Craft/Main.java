@@ -76,9 +76,10 @@ public class Main extends AbstractScript {
 		smeltTile = getSmeltTile();
 		getWalking().walk(smeltTile);
 		sleepUntil(() -> {
-			sleep(200);
-			return !getLocalPlayer().isMoving();
+			sleep(250, 350);
+			return !getLocalPlayer().isMoving() || smeltArea.contains(getLocalPlayer());
 		}, 2500);
+		sleep(350, 750);
 	}
 
 	private void smelt() {
@@ -128,7 +129,7 @@ public class Main extends AbstractScript {
 			sleep(250, 350);
 			return !getLocalPlayer().isMoving() || bankArea.contains(getLocalPlayer());
 		}, 2500);
-		sleep(550, 750);
+		sleep(350, 750);
 	}
 
 	private int bank() {  //4th state
@@ -186,6 +187,6 @@ public class Main extends AbstractScript {
 				bank();
 				break;
 		}
-		return Calculations.random(200, 800);
+		return Calculations.random(100, 200);
 	}
 }
