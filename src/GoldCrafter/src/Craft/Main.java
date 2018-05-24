@@ -146,13 +146,13 @@ public class Main extends AbstractScript {
 	private int bank() {  //4th state
 		if (getBank().isOpen()) {
 			getBank().depositAllExcept(jewelery.getMouldID());
-			sleep(100, 200);
+			sleep(200, 300);
 			if (!getInventory().contains(jewelery.getMouldID())) {
 				getBank().withdraw(jewelery.getMouldID());
-				sleep(100, 200);
+				sleep(200, 300);
 			}
 			getBank().withdrawAll(GOLD_BAR_ID);
-			sleep(100, 200);
+			sleep(300, 400);
 		} else {
 			getBank().openClosest();
 			sleepUntil(() -> getBank().isOpen(), 1500);
