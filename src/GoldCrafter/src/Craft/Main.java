@@ -128,6 +128,7 @@ public class Main extends AbstractScript {
 			sleep(250, 350);
 			return !getLocalPlayer().isMoving();
 		}, 2500);
+		sleep(650, 850);
 	}
 
 	private int bank() {  //4th state
@@ -160,7 +161,6 @@ public class Main extends AbstractScript {
 				s.setState(5);
 			}
 		}
-
 		/*
 		3 - move to smelt
 		2 - smelt
@@ -186,8 +186,6 @@ public class Main extends AbstractScript {
 				bank();
 				break;
 		}
-
-		//RUN EVERY SECOND-ISH
 		return Calculations.random(200, 800);
 	}
 }
