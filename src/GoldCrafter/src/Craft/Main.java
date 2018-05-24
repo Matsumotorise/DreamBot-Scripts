@@ -85,7 +85,7 @@ public class Main extends AbstractScript {
 			sleep(100, 200);
 			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
 					|| smeltTile.distance() < 7;
-		}, 3500);
+		}, 350);
 		sleep(350, 450);
 	}
 
@@ -121,7 +121,7 @@ public class Main extends AbstractScript {
 							return !getInventory().contains(GOLD_BAR_ID) || startLvl != getSkills().getRealLevel(Skill.CRAFTING);
 						}), 120000);
 						log("Done");
-						sleep((int) Calculations.random(500, 2500));
+						sleep(Calculations.random(500, 2500));
 						//Reaction Time to wait
 					}
 				}

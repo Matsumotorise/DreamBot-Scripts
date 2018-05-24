@@ -91,12 +91,12 @@ public class State {
 		return loot;
 	}
 
-	public void setLoot(String loot) {
-		this.loot = new ArrayList<>(Arrays.asList(loot.split(", ")));
-	}
-
 	public void setLoot(List<String> loot) {
 		this.loot = loot;
+	}
+
+	public void setLoot(String loot) {
+		this.loot = new ArrayList<>(Arrays.asList(loot.split(", ")));
 	}
 
 	public String getFood() {
