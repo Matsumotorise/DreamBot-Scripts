@@ -138,11 +138,12 @@ public class Main extends AbstractScript {
 		if (getBank().isOpen()) {
 			getBank().depositAllExcept(jewelery.getMouldID());
 			sleep(100, 200);
-			getBank().withdrawAll(GOLD_BAR_ID);
-			sleep(100, 200);
 			if (!getInventory().contains(jewelery.getMouldID())) {
 				getBank().withdraw(jewelery.getMouldID());
+				sleep(100, 200);
 			}
+			getBank().withdrawAll(GOLD_BAR_ID);
+			sleep(100, 200);
 		} else {
 			getBank().openClosest();
 			sleepUntil(() -> getBank().isOpen(), 1500);
