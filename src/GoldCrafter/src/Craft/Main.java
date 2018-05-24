@@ -148,10 +148,16 @@ public class Main extends AbstractScript {
 			getBank().depositAllExcept(jewelery.getMouldID());
 			sleep(200, 300);
 			if (!getInventory().contains(jewelery.getMouldID())) {
-				getBank().withdraw(jewelery.getMouldID());
+				if(!getBank().withdraw(jewelery.getMouldID())){
+					log("Could not find mold");
+					stop();
+				}
 				sleep(500, 600);
 			}
-			getBank().withdrawAll(GOLD_BAR_ID);
+			if(!getBank().withdrawAll(GOLD_BAR_ID)){
+				log("Ran out of gold bars");
+				stop();
+			}
 			sleep(500, 600);
 		} else {
 			getBank().openClosest();
