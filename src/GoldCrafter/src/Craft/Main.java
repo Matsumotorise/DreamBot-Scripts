@@ -94,6 +94,7 @@ public class Main extends AbstractScript {
 					log("Making all");
 					if (sleepUntil(() -> getLocalPlayer().isAnimating(), 5000)) {
 						log("Player animating");
+						getMouse().moveMouseOutsideScreen();
 						int startLvl = getSkills().getRealLevel(Skill.CRAFTING);
 						sleepUntil((() -> {
 							sleep(1000);
