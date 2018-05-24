@@ -150,7 +150,7 @@ public class Main extends AbstractScript {
 			if (!getInventory().contains(jewelery.getMouldID())) {
 				if (!getBank().contains(jewelery.getMouldID())) {
 					log("No mould found");
-					stop();
+					logout();
 				} else {
 					getBank().withdraw(jewelery.getMouldID());
 					sleep(500, 600);
@@ -161,7 +161,7 @@ public class Main extends AbstractScript {
 				sleep(500, 600);
 			} else {
 				log("Ran out of gold bars");
-				stop();
+				logout();
 				sleep(500, 600);
 			}
 			sleep(100);
@@ -214,10 +214,9 @@ public class Main extends AbstractScript {
 		return Calculations.random(50, 100);
 	}
 
-	@Override
-	public void onExit() {
-		super.onExit();
+	private void logout(){
 		getTabs().logout();
 		sleepUntil(() -> !getClient().isLoggedIn(), 2000);
+		stop();
 	}
 }
