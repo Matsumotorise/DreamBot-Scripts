@@ -155,8 +155,10 @@ public class Main extends AbstractScript {
 				sleep(500, 600);
 			}
 			if (!getBank().withdrawAll(GOLD_BAR_ID)) {
-				log("Ran out of gold bars");
-				stop();
+				if (!getBank().withdrawAll(GOLD_BAR_ID)) {
+					log("Ran out of gold bars");
+					stop();
+				}
 			}
 			sleep(500, 600);
 		} else {
