@@ -126,9 +126,9 @@ public class Main extends AbstractScript {
 		getWalking().walk(bankArea.getRandomTile());
 		sleepUntil(() -> {
 			sleep(250, 350);
-			return !getLocalPlayer().isMoving();
+			return !getLocalPlayer().isMoving() || bankArea.contains(getLocalPlayer());
 		}, 2500);
-		sleep(650, 850);
+		sleep(550, 750);
 	}
 
 	private int bank() {  //4th state
