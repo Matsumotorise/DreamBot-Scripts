@@ -101,6 +101,7 @@ public class Main extends AbstractScript {
 							return !getInventory().contains(GOLD_BAR_ID) || startLvl != getSkills().getRealLevel(Skill.CRAFTING);
 						}), 120000);
 						log("Done");
+						sleep(250, 800);
 					}
 				}
 			} else {
