@@ -116,7 +116,7 @@ public class Main extends AbstractScript {
 		getWalking().walk(destinationT);
 		reactionDistance = Calculations.random(4);
 		sleepUntil(() -> {
-			sleep(50, 100);
+			sleep(40, 75);
 			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < reactionDistance;
 		}, 9000);
 	}
@@ -135,6 +135,6 @@ public class Main extends AbstractScript {
 				move();
 		}
 		//RUN EVERY SECOND-ISH
-		return Calculations.random(100, 200);
+		return Calculations.random(50, 100);
 	}
 }
