@@ -164,6 +164,7 @@ public class Main extends AbstractScript {
 				stop();
 				sleep(500, 600);
 			}
+			sleep(100);
 		} else {
 			getBank().openClosest();
 			sleepUntil(() -> getBank().isOpen(), 1500);
