@@ -73,7 +73,7 @@ public class Main extends AbstractScript {
 		return BankLocation.getNearest(getLocalPlayer()).getArea(4);
 	}
 
-	private Tile getBankTile(){
+	private Tile getBankTile() {
 		return bankArea.getRandomTile();
 	}
 
@@ -81,12 +81,24 @@ public class Main extends AbstractScript {
 		smeltTile = getSmeltTile();
 		getWalking().walk(smeltTile);
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
-		sleepUntil(() -> !getLocalPlayer().isMoving(), 1000);
 		sleepUntil(() -> {
-			sleep(250, 350);
-			return !getLocalPlayer().isMoving() || smeltArea.contains(getLocalPlayer());
-		}, 2500);
-		sleep(350, 750);
+			sleep(100, 200);
+			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
+					|| smeltTile.distance() < 7;
+		}, 3500);
+		sleep(350, 450);
+	}
+
+	private void moveToBank() {  //////////////3rd state////////////////
+		bankTile = getBankTile();
+		getWalking().walk(bankTile);
+		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
+		sleepUntil(() -> {
+			sleep(100, 200);
+			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
+					|| bankTile.distance() < 7;
+		}, 3500);
+		sleep(350, 450);
 	}
 
 	private void smelt() {
@@ -129,18 +141,6 @@ public class Main extends AbstractScript {
 				}
 			}
 		}
-	}
-
-	private void moveToBank() {  //////////////3rd state////////////////
-		bankTile = getBankTile();
-		getWalking().walk(bankTile);
-		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
-		sleepUntil(() -> !getLocalPlayer().isMoving(), 1000);
-		sleepUntil(() -> {
-			sleep(100, 200);
-			return bankArea.contains(getLocalPlayer());
-		}, 2500);
-		sleep(350, 450);
 	}
 
 	private int bank() {  //4th state
@@ -199,6 +199,6 @@ public class Main extends AbstractScript {
 				bank();
 				break;
 		}
-		return Calculations.random(50 , 100);
+		return Calculations.random(50, 100);
 	}
 }
