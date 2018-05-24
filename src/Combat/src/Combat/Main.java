@@ -114,7 +114,10 @@ public class Main extends AbstractScript {
 
 	private void moveToBank() {  //////////////3rd state////////////////
 		getWalking().walk(bankArea.getRandomTile());
-		sleepUntil(() -> !getLocalPlayer().isMoving(), 2500);
+		sleepUntil(() -> {
+			sleep(100);
+			return !getLocalPlayer().isMoving();
+		}, 2500);
 	}
 
 	/////////////////////2nd STATE/////////////////////////
@@ -149,7 +152,6 @@ public class Main extends AbstractScript {
 		if (chances < 0.096) {
 			log("Antiban; changing camera angle...");
 			getCamera().rotateToEvent(srand.nextInt() + 360, srand.nextInt() + 90);
-		} else {
 		}
 	}
 
