@@ -105,7 +105,7 @@ public class Main extends AbstractScript {
 					}
 				}
 			} else {
-				if (Math.random() > .25) {
+				if (Math.random() > .1) {
 					getGameObjects().closest(FURNACE_ID).interact("Smelt");
 					log("Interacting by smelt");
 				} else {
