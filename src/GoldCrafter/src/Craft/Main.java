@@ -102,7 +102,7 @@ public class Main extends AbstractScript {
 							return !getInventory().contains(GOLD_BAR_ID) || startLvl != getSkills().getRealLevel(Skill.CRAFTING);
 						}), 120000);
 						log("Done");
-						sleep(400, 4000);
+						sleep((int) Calculations.nextGaussianRandom(1200, 300));
 						//Reaction Time to wait
 					}
 				}
