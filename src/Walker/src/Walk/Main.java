@@ -117,8 +117,8 @@ public class Main extends AbstractScript {
 		reactionDistance = Calculations.random(4);
 		sleepUntil(() -> {
 			sleep(100, 200);
-			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() > reactionDistance;
-		}, 5000);
+			return !(getLocalPlayer().isMoving() || getWalking().getDestination().distance() > reactionDistance);
+		}, 9000);
 	}
 
 	@Override
