@@ -21,7 +21,7 @@ public class Main extends AbstractScript {
 
 	private State s;
 	private Area bankArea, smeltArea;
-	private Tile smeltTile;
+	private Tile smeltTile, bankTile;
 	private WidgetChild wig;
 
 	@Override
@@ -38,6 +38,7 @@ public class Main extends AbstractScript {
 	private void init() { //1st state
 		bankArea = getBankArea();
 		smeltArea = getSmeltArea();
+		bankTile = getBankTile();
 		smeltTile = getSmeltTile();
 		jewelery = getJewelery();
 	}
@@ -70,6 +71,10 @@ public class Main extends AbstractScript {
 
 	private Area getBankArea() {
 		return BankLocation.getNearest(getLocalPlayer()).getArea(4);
+	}
+
+	private Tile getBankTile(){
+		return bankArea.getRandomTile();
 	}
 
 	private void moveToSmelt() {
@@ -127,7 +132,8 @@ public class Main extends AbstractScript {
 	}
 
 	private void moveToBank() {  //////////////3rd state////////////////
-		getWalking().walk(bankArea.getRandomTile());
+		bankTile = getBankTile();
+		getWalking().walk(bankTile);
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
 		sleepUntil(() -> !getLocalPlayer().isMoving(), 1000);
 		sleepUntil(() -> {
@@ -162,7 +168,7 @@ public class Main extends AbstractScript {
 				s.setState(2);
 			}
 		} else {
-			if (!bankArea.contains(getLocalPlayer())) {
+			if (bankTile.distance() > 7) {
 				s.setState(4);
 			} else {
 				s.setState(5);
