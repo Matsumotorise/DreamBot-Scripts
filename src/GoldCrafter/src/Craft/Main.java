@@ -113,7 +113,7 @@ public class Main extends AbstractScript {
 				} else {
 					if (!getTabs().isOpen(Tab.INVENTORY)) {
 						getTabs().open(Tab.INVENTORY);
-						sleep(Calculations.random(400, 500));
+						sleep(400, 500);
 						log("Switching to inv");
 					}
 					getInventory().get(GOLD_BAR_ID).useOn(getGameObjects().closest(FURNACE_ID));
@@ -190,6 +190,6 @@ public class Main extends AbstractScript {
 				bank();
 				break;
 		}
-		return Calculations.random(100, 200);
+		return Calculations.random(50 , 100);
 	}
 }
