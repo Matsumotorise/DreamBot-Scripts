@@ -126,10 +126,10 @@ public class Main extends AbstractScript {
 					}
 				}
 			} else {
-				if (Math.random() > .1) {
+				if (Math.random() > .05) {
 					getGameObjects().closest(FURNACE_ID).interact("Smelt");
 					log("Interacting by smelt");
-				} else {
+				} else if (!wig.isVisible()) {
 					if (!getTabs().isOpen(Tab.INVENTORY)) {
 						getTabs().open(Tab.INVENTORY);
 						sleep(400, 500);
@@ -214,7 +214,7 @@ public class Main extends AbstractScript {
 		return Calculations.random(50, 100);
 	}
 
-	private void logout(){
+	private void logout() {
 		getTabs().logout();
 		sleepUntil(() -> !getClient().isLoggedIn(), 2000);
 		stop();
