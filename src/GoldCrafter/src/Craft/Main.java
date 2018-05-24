@@ -147,7 +147,7 @@ public class Main extends AbstractScript {
 		if (getBank().isOpen()) {
 			getBank().depositAllExcept(jewelery.getMouldID());
 			sleep(200, 300);
-			if (!getInventory().contains(jewelery.getMouldID())) {
+			if (!getInventory().contains(jewelery.getMouldID()) && !getInventory().contains(jewelery.getMouldID())) {
 				if (!getBank().withdraw(jewelery.getMouldID())) {
 					log("Could not find mold");
 					stop();
