@@ -50,7 +50,7 @@ public class Main extends AbstractScript {
 	private Area getSmeltArea() {
 		switch (s.getSmeltLocation()) {
 			case 0:
-				return new Tile(3276, 3186, 0).getArea(2);
+				return new Area(3274, 3184, 3279, 3188, 0);
 			case 1:
 				return new Tile(2973, 3370, 0).getArea(2);
 		}
@@ -70,7 +70,7 @@ public class Main extends AbstractScript {
 	}
 
 	private Area getBankArea() {
-		return BankLocation.getNearest(getLocalPlayer()).getArea(4);
+		return BankLocation.getNearest(getLocalPlayer()).getArea(3);
 	}
 
 	private Tile getBankTile() {
@@ -86,19 +86,20 @@ public class Main extends AbstractScript {
 			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
 					|| smeltTile.distance() < 7;
 		}, 350);
-		sleep(350, 450);
+		sleep(650, 750);
 	}
 
 	private void moveToBank() {  //////////////3rd state////////////////
 		bankTile = getBankTile();
 		getWalking().walk(bankTile);
+		log("Walking to bank tile");
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
 		sleepUntil(() -> {
 			sleep(100, 200);
 			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
 					|| bankTile.distance() < 7;
 		}, 3500);
-		sleep(350, 450);
+		sleep(650, 750);
 	}
 
 	private void smelt() {
@@ -139,6 +140,7 @@ public class Main extends AbstractScript {
 					log("Using gold bar on furnace");
 					sleep(100);
 				}
+				sleep(400);
 			}
 		}
 	}
@@ -174,13 +176,13 @@ public class Main extends AbstractScript {
 
 	private void checkState() {
 		if (getInventory().contains(GOLD_BAR_ID)) {
-			if (smeltTile.distance() > 7) {
+			if (smeltTile.distance() > 10) {
 				s.setState(3);
 			} else {
 				s.setState(2);
 			}
 		} else {
-			if (bankTile.distance() > 7) {
+			if (bankTile.distance() > 10) {
 				s.setState(4);
 			} else {
 				s.setState(5);
@@ -215,6 +217,7 @@ public class Main extends AbstractScript {
 	}
 
 	private void logout() {
+		log("Exiting");
 		getTabs().logout();
 		sleepUntil(() -> !getClient().isLoggedIn(), 2000);
 		stop();
