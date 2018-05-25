@@ -83,7 +83,7 @@ public class Main extends AbstractScript {
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
 		sleepUntil(() -> {
 			sleep(100, 200);
-			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
+			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4, 8)
 					|| smeltTile.distance() < 7;
 		}, 350);
 		sleep(650, 750);
@@ -96,7 +96,7 @@ public class Main extends AbstractScript {
 		sleepUntil(() -> getLocalPlayer().isMoving(), 400);
 		sleepUntil(() -> {
 			sleep(100, 200);
-			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4)
+			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4, 8)
 					|| bankTile.distance() < 7;
 		}, 3500);
 		sleep(650, 750);
