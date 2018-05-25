@@ -176,13 +176,13 @@ public class Main extends AbstractScript {
 
 	private void checkState() {
 		if (getInventory().contains(GOLD_BAR_ID)) {
-			if (smeltTile.distance() > 10) {
+			if (smeltTile.distance() > 11) {
 				s.setState(3);
 			} else {
 				s.setState(2);
 			}
 		} else {
-			if (bankTile.distance() > 10) {
+			if (bankTile.distance() > 11) {
 				s.setState(4);
 			} else {
 				s.setState(5);
