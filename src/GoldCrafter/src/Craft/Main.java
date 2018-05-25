@@ -181,13 +181,13 @@ public class Main extends AbstractScript {
 
 	private void checkState() {
 		if (getInventory().contains(GOLD_BAR_ID)) {
-			if (smeltArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(11, 7)) {
+			if (smeltArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(7, 11)) {
 				s.setState(3);
 			} else {
 				s.setState(2);
 			}
 		} else {
-			if (bankArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(11, 7)) {
+			if (bankArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(7, 11)) {
 				s.setState(4);
 			} else {
 				s.setState(5);
