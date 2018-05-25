@@ -70,6 +70,12 @@ public class Main extends AbstractScript {
 	}
 
 	private Area getBankArea() {
+		switch (s.getSmeltLocation()) {
+			case 0:   //Al Kharid bank
+				return new Area(3269, 3166, 3271, 3169, 0);
+			case 1:  //:
+				break;
+		}
 		return BankLocation.getNearest(getLocalPlayer()).getArea(3);
 	}
 
