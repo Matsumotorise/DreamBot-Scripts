@@ -164,7 +164,6 @@ public class Main extends AbstractScript {
 			} else {
 				log("Ran out of gold bars");
 				logout();
-				sleep(500, 600);
 			}
 			sleep(100);
 		} else {

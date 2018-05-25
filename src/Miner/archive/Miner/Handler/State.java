@@ -31,6 +31,10 @@ public class State {
 		return radius;
 	}
 
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
 	public void setRadius(String radius) {
 		try {
 			this.radius = Integer.parseInt(radius);
@@ -38,10 +42,6 @@ public class State {
 			this.radius = 10;
 			System.out.println(e);
 		}
-	}
-
-	public void setRadius(int radius) {
-		this.radius = radius;
 	}
 
 	public boolean isDrop() {
