@@ -91,7 +91,7 @@ public class Main extends AbstractScript {
 			sleep(100, 200);
 			return !getLocalPlayer().isMoving() || getWalking().getDestination().distance() < Calculations.random(4, 8)
 					|| smeltTile.distance() < 7;
-		}, 350);
+		}, 3500);
 		sleep(650, 750);
 	}
 
