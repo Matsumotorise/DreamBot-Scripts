@@ -224,7 +224,7 @@ public class Main extends AbstractScript {
 	private void logout() {
 		log("Exiting");
 		getTabs().logout();
-		sleepUntil(() -> !getClient().isLoggedIn(), 2000);
+		sleepUntil(() -> !getClient().isLoggedIn(), 10000);
 		stop();
 	}
 }
