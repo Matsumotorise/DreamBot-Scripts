@@ -90,7 +90,7 @@ public class Main extends AbstractScript {
 		sleepUntil(() -> {
 			sleep(100, 200);
 			return !getLocalPlayer().isMoving() || smeltArea.getNearestTile(getLocalPlayer()).distance() < Calculations
-					.random(3, 8) || smeltTile.distance() < 7;
+					.random(3, 8) || smeltTile.distance() < 11;
 		}, 3500);
 		sleep(650, 750);
 	}
@@ -103,7 +103,7 @@ public class Main extends AbstractScript {
 		sleepUntil(() -> {
 			sleep(100, 200);
 			return !getLocalPlayer().isMoving() || bankArea.getNearestTile(getLocalPlayer()).distance() < Calculations
-					.random(3, 8) || bankTile.distance() < 7;
+					.random(3, 8) || bankTile.distance() < 11;
 		}, 3500);
 		sleep(650, 750);
 	}
@@ -181,13 +181,13 @@ public class Main extends AbstractScript {
 
 	private void checkState() {
 		if (getInventory().contains(GOLD_BAR_ID)) {
-			if (smeltArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(7, 11)) {
+			if (smeltArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(4, 11)) {
 				s.setState(3);
 			} else {
 				s.setState(2);
 			}
 		} else {
-			if (bankArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(7, 11)) {
+			if (bankArea.getNearestTile(getLocalPlayer()).distance() > Calculations.random(4, 11)) {
 				s.setState(4);
 			} else {
 				s.setState(5);
