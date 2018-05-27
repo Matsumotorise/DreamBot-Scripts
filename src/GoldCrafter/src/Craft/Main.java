@@ -223,8 +223,15 @@ public class Main extends AbstractScript {
 
 	private void logout() {
 		log("Exiting");
+
+		if (getBank().isOpen()) {
+			getBank().close();
+			sleepUntil(() -> !getBank().isOpen(), 10000);
+		}
+
 		getTabs().logout();
 		sleepUntil(() -> !getClient().isLoggedIn(), 10000);
+
 		stop();
 	}
 }
